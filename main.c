@@ -5,13 +5,19 @@
 //ChC: Right Joystick, X-axis
 //ChD: Right Joystick, Y-axis
 typedef struct{
-	int left, right;
+	int left, right, theta;
 } TMotorControl;
 
+int min(int a, int b, int c){
+	int m = a;
+    if (m > b) m = b;
+    if (m > c) m = c;
+    return m;
+}
 //https://robotics.stackexchange.com/a/2016
-TMotorControl angleToThrust(int r, int theta){
-	TMotorControl t;
+void angleToThrust(int r, int theta, TMotorControl &t){
 	theta = ((theta + 180) % 360) - 180;			// normalize value to [-180, 180)
+	t.theta=theta;
 	if(r > 100) r = 100;							// normalize value to [0, 100]
 		int v_a = r * (45 - theta % 90) / 45;		// falloff of main motor
 	int v_b = min(100, 2 * r + v_a, 2 * r - v_a);	// compensation of other motor
@@ -24,7 +30,6 @@ TMotorControl angleToThrust(int r, int theta){
 	}else{
 		t.left=v_a;t.right=-v_b;
 	}
-	return t;
 }
 task main()
 {
@@ -35,8 +40,13 @@ task main()
 		float radius, angle;
 		radius = sqrt( x*x + y*y);
 		angle = radiansToDegrees(atan2(y, x));
-		TMotorControl t = angleToThrust(radius,angle);
-		displayTextLine(1, "Left: %d", t.left);
-		displayTextLine(2, "Right: %d", t.right);
+		angle-=90;
+		if(angle < 0) angle = 360 + angle;
+		TMotorControl t;
+		angleToThrust(radius,angle,t);
+		displayTextLine(1, "Angle: %d", angle);
+		displayTextLine(2, "Left: %d", t.left);
+		displayTextLine(3, "Right: %d", t.right);
+		displayTextLine(4, "Corrected Angle: %d", t.theta);
 	}
 }
