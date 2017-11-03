@@ -47,7 +47,7 @@ void angleToThrust(int r, int theta, TMotorControl &t) {
 	}
 }
 task main() {
-	setColorMode(port1, colorTypeRGB_Hue_Ambient);
+	setColorMode(port1, colorTypeRGB_12Colors_Ambient);
 	while (true) {
 		int x = getJoystickValue(ChB);
 		int y = getJoystickValue(ChA);
@@ -62,9 +62,50 @@ task main() {
 		angle -= 90;
 		if (angle < 0) angle = 360 + angle;
 		angle = 360 - angle;
-		displayCenteredTextLine(2, "%d", (float)getColorHue(port1)*(360.0/255.0));
+		switch(getColorName(port1)){
+			case colorNone:
+				displayCenteredTextLine(2, "colorNone");
+				break;
+			case colorRedViolet:
+				displayCenteredTextLine(2, "colorRedViolet");
+				break;
+			case colorRed:
+				displayCenteredTextLine(2, "colorRed");
+				break;
+			case colorDarkOrange:
+				displayCenteredTextLine(2, "colorDarkOrange");
+				break;
+			case colorOrange:
+				displayCenteredTextLine(2, "colorOrange");
+				break;
+			case colorDarkYellow:
+				displayCenteredTextLine(2, "colorDarkYellow");
+				break;
+			case colorYellow:
+				displayCenteredTextLine(2, "colorYellow");
+				break;
+			case colorLimeGreen:
+				displayCenteredTextLine(2, "colorLimeGreen");
+				break;
+			case colorGreen:
+				displayCenteredTextLine(2, "colorGreen");
+				break;
+			case colorBlueGreen:
+				displayCenteredTextLine(2, "colorBlueGreen");
+				break;
+			case colorBlue:
+				displayCenteredTextLine(2, "colorBlue");
+				break;
+			case colorDarkBlue:
+				displayCenteredTextLine(2, "colorDarkBlue");
+				break;
+			case colorViolet:
+				displayCenteredTextLine(2, "colorViolet");
+				break;
+		}
+		/*displayCenteredTextLine(2, "%d", (float)getColorHue(port1)*(360.0/255.0));
 		displayCenteredTextLine(3, "%d", (float)getColorSaturation(port1)*(100.0/255.0));
-		displayCenteredTextLine(4, "%d", (float)getColorValue(port1)*(100.0/255.0));
+		displayCenteredTextLine(4, "%d", (float)getColorValue(port1)*(100.0/255.0));*/
 		TMotorControl t;
 		angleToThrust(radius, angle, t);
 		setMotorSpeed(leftMotor,t.left);
