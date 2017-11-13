@@ -14,6 +14,7 @@
 #define conveyorBelt port1
 #define ringFlipper port1
 #define ringArm port1
+#define ringColor port1
 #endif
 volatile bool isCalibrating = false;
 #define USE_COLORSENSOR
@@ -123,15 +124,7 @@ task main() {
 #ifdef USE_COLORSENSOR
 		switch(getColorName(ringColor)){
 			case colorRed:
-				if(ringDetected||getColorValue(ringColor)>15)break;
-				ringDetected=true;
-				clearTimer(T1);
-				break;
 			case colorGreen:
-				if(ringDetected)break;
-				ringDetected=true;
-				clearTimer(T1);
-				break;
 			case colorBlue:
 				if(ringDetected)break;
 				ringDetected=true;
@@ -184,7 +177,6 @@ task main() {
 				delay(450);
 				setMotorTarget(ringFlipper, 10, 60);
 				if(ringCount>=3){
-					playSound(soundTada);
 					setMotorTarget(ringArm,70,60);
 				}
 				ringDetected=false;
