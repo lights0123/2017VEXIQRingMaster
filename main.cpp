@@ -167,8 +167,14 @@ task main() {
 		switch (getColorName(ringColor)) {
 			case colorRed:
 			case colorGreen:
+				datalogAddValue(0, getColorProximity(ringColor));
+				if (ringDetected || getColorProximity(ringColor)<225) break;
+				ringDetected = true;			//Record that a ring was detected
+				clearTimer(T1);					//Reset the timer to time it
+				break;
 			case colorBlue:
-				if (ringDetected) break;
+				datalogAddValue(0, getColorProximity(ringColor));
+				if (ringDetected || getColorProximity(ringColor)<125) break;
 				ringDetected = true;			//Record that a ring was detected
 				clearTimer(T1);					//Reset the timer to time it
 		}
@@ -224,14 +230,17 @@ task main() {
 					setMotorTarget(ringFlipper, 130, 60);
 					delay(450);
 					setMotorTarget(ringFlipper, 10, 60);
-				}
+					ringCount = 0;
+				}else{
 				setMotorTarget(ringFlipper, 130, 60);
 				delay(450);
 				setMotorTarget(ringFlipper, 10, 60);
 				if (ringCount >= 3) {
 					setMotorTarget(ringArm, 70, 60);
+					while (getMotorEncoder(ringArm) < 69 || getMotorEncoder(ringArm) > 71);
 				}
 				ringDetected = false;
+			}
 			}
 		}
 	}
