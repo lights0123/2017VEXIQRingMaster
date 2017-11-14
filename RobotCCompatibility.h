@@ -1,7 +1,3 @@
-//
-// Created by Ben Schattinger on 10/15/17.
-//
-
 #if !defined(INC_2017VEXIQRINGMASTER_ROBOTC_H) && !defined(ROBOTC)
 #define INC_2017VEXIQRINGMASTER_ROBOTC_H
 
