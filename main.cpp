@@ -153,6 +153,8 @@ task wheelControl() {
 
 bool ringDetected = false;
 int ringCount = 0;
+float ringDegrees = 0;
+
 
 task main() {
 	startTask(calibrate);
@@ -170,13 +172,13 @@ task main() {
 				datalogAddValue(0, getColorProximity(ringColor));
 				if (ringDetected || getColorProximity(ringColor)<225) break;
 				ringDetected = true;			//Record that a ring was detected
-				clearTimer(T1);					//Reset the timer to time it
+				ringDegrees = getMotorEncoder(conveyorBelt);
 				break;
 			case colorBlue:
 				datalogAddValue(0, getColorProximity(ringColor));
 				if (ringDetected || getColorProximity(ringColor)<125) break;
 				ringDetected = true;			//Record that a ring was detected
-				clearTimer(T1);					//Reset the timer to time it
+				ringDegrees = getMotorEncoder(conveyorBelt);
 		}
 
 		//We don't want to override the calibration process - disable motors if so
@@ -220,8 +222,8 @@ task main() {
 			else if (getMotorSpeed(conveyorBelt) > 0) setMotorSpeed(conveyorBelt, 0);
 
 			//The variable ringDetected keeps track of if a ring was detected by the color sensor. If it was,
-			//
-			if (ringDetected && time1[T1] >= 900) {
+			//TODO: measure, and if ringDegrees is not correct, correct it
+			if (ringDetected && ringDegrees - 340 <= getMotorEncoder(conveyorBelt)) {
 				ringCount++;
 				if (ringCount >= 4) {
 					setMotorSpeed(conveyorBelt, 0);
