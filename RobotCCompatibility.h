@@ -88,6 +88,8 @@ extern void displayCenteredTextLine(const int nLineNumber, std::string sFormatSt
 //Debug
 #define writeDebugStream printf
 #define writeDebugStreamLine(format, ...) printf(format "\n", __VA_ARGS__)
+template <typename T>
+extern void datalogAddValue(int datalog, T data);
 
 //Motors
 extern void setMotorSpeed(ports port, int speed);
@@ -125,6 +127,7 @@ enum colors{
 };
 extern colors getColorName(ports port);
 extern int getColorValue(ports port);
+extern int getColorProximity(ports port);
 extern void setColorMode(ports port, colorSensorModes mode);
 //Tasks
 extern void startTask(void());
