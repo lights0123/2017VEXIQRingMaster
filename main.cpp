@@ -253,7 +253,8 @@ task main() {
 			//Manual trigger of the ring flipper
 			if (getJoystickValue(BtnRUp)) {
 				setMotorTarget(ringFlipper, 120, 60);
-				while (getMotorEncoder(ringFlipper) < 115);
+				clearTimer(T2);
+				while (getMotorEncoder(ringFlipper) < 115 && time1[T2] < 1000);
 				delay(100);
 				setMotorTarget(ringFlipper, 10, 60);
 			}
@@ -262,8 +263,10 @@ task main() {
 			if (getJoystickValue(BtnEUp)) {
 				setMotorTarget(ringFlipper, 10, 60);
 				setMotorTarget(ringArm, 51, 60);
-				while (getMotorEncoder(ringFlipper) > 15);
-				while (getMotorEncoder(ringArm) < 50 || getMotorEncoder(ringArm) > 52);
+				clearTimer(T2);
+				while (getMotorEncoder(ringFlipper) > 15 || time1[T2] < 1000);
+				clearTimer(T2);
+				while ((getMotorEncoder(ringArm) < 50 || getMotorEncoder(ringArm) > 52) && time1[T2] < 1000);
 			}
 
 			//If FUp is pressed, then the conveyor belt moves forward. Then, if pressed again, it stops it.
@@ -308,7 +311,7 @@ task main() {
 						//stored on the arm. We move the arm up to prevent this.
 						setMotorTarget(ringArm, 70, 60);
 						clearTimer(T2);
-						while (getMotorEncoder(ringArm) < 69 || getMotorEncoder(ringArm) > 71 || time1[T2]>1000);
+						while ((getMotorEncoder(ringArm) < 69 || getMotorEncoder(ringArm) > 71) && time1[T2]<1000);
 					}
 					ringDetected = false;
 				}
