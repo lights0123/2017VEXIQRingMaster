@@ -307,7 +307,8 @@ task main() {
 						//After 3 rings have been collected, the belt generally gets caught on the rings
 						//stored on the arm. We move the arm up to prevent this.
 						setMotorTarget(ringArm, 70, 60);
-						while (getMotorEncoder(ringArm) < 69 || getMotorEncoder(ringArm) > 71);
+						clearTimer(T2);
+						while (getMotorEncoder(ringArm) < 69 || getMotorEncoder(ringArm) > 71 || time1[T2]>1000);
 					}
 					ringDetected = false;
 				}
