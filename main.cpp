@@ -172,7 +172,7 @@ task calibrate() {
 		setMotorTarget(ringArm, 51, 60);
 		clearTimer(T2);
 		while (true) {
-			if (getMotorEncoder(ringArm) != 51) {
+			if (getMotorEncoder(ringArm) == 51) {
 				calibrateSuccessful = true;
 				break;
 			} else if (time1[T2] > 2000) break;
