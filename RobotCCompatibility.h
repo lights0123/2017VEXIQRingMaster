@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 
-#define task void
+#define task int
 //Control
 extern void delay(int d);
 //Math
@@ -44,8 +44,6 @@ extern float pow(const float base, const float exponent);
 
 extern short radiansToDegrees(const float fRadians);
 
-extern int16_t rand();
-
 extern long randLong();
 
 extern short sgn(const float input);
@@ -60,7 +58,7 @@ extern float sqrt(const float input);
 extern int abs(int in);
 
 //Ports
-enum ports {
+enum tMotor {
 	port1,
 	port2,
 	port3,
@@ -92,11 +90,11 @@ template <typename T>
 extern void datalogAddValue(int datalog, T data);
 
 //Motors
-extern void setMotorSpeed(ports port, int speed);
-extern int getMotorEncoder(ports port);
-extern void resetMotorEncoder(ports port);
-extern void setMotorTarget(ports port, int target, int speed);
-extern int getMotorSpeed(ports port);
+extern void setMotorSpeed(tMotor port, int speed);
+extern int getMotorEncoder(tMotor port);
+extern void resetMotorEncoder(tMotor port);
+extern void setMotorTarget(tMotor port, int target, int speed);
+extern int getMotorSpeed(tMotor port);
 
 //Sensors
 enum colorSensorModes {
@@ -125,12 +123,12 @@ enum colors{
 	colorDarkBlue,
 	colorViolet
 };
-extern colors getColorName(ports port);
-extern int getColorValue(ports port);
-extern int getColorProximity(ports port);
-extern void setColorMode(ports port, colorSensorModes mode);
+extern colors getColorName(tMotor port);
+extern int getColorValue(tMotor port);
+extern int getColorProximity(tMotor port);
+extern void setColorMode(tMotor port, colorSensorModes mode);
 //Tasks
-extern void startTask(void());
+extern void startTask(int());
 //Timers
 enum timers{
 	T1,
