@@ -1,6 +1,6 @@
 #pragma config(Motor, motor1, lifter, tmotorVexIQ, PIDControl, encoder)
-#pragma config(Motor, motor6, armMotor, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor7, rightMotor, tmotorVexIQ, PIDControl, reversed, driveRight, encoder)
+#pragma config(Motor, motor9, armMotor, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor10, rotator, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor11, miniArm, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor12, leftMotor, tmotorVexIQ, PIDControl, driveLeft, encoder)
@@ -200,24 +200,32 @@ task main() {
     startTask(calibrate);
     startTask(wheelControl);
 
-    //setMotorTarget(armMotor, -360, 100);
     while (isCalibrating);
-    setMotorTarget(miniArm, 100, 100);
+    delay(1000);
+    setMotorTarget(miniArm, -80, 100);
+    delay(500);
+    setMotorTarget(armMotor, -45 * 5, 100);
     delay(5000);
+    setMotorTarget(armMotor, -10 * 5, 50);
+    delay(1500);
+    setMotorTarget(miniArm, 10, 100);
+    delay(500);
+    setMotorTarget(armMotor, 0, 50);
+    delay(1000);
     setMotorTarget(miniArm, -60, 100);
     delay(250);
-    setMotorTarget(armMotor, -110 * 5, 100);
-    while(getMotorEncoder(armMotor)>=-40*5);
+    setMotorTarget(armMotor, -100 * 5, 100);
+    while(getMotorEncoder(armMotor)>=-60*5);
     setMotorTarget(rotator, -45, 100);
     delay(2000);
-    setMotorTarget(rotator, -90, 100);
+    //setMotorTarget(rotator, -90, 100);
     delay(1000);
-    setMotorTarget(rotator, -45, 100);
+    setMotorTarget(rotator, -35, 100);
     delay(500);
     setMotorTarget(armMotor, -40 * 5, 35);
     delay(2000);
     setMotorTarget(rotator, 0, 100);
-    delay(750);
+    delay(500);
     setMotorTarget(armMotor, 0, 35);
     delay(2000);
 }
