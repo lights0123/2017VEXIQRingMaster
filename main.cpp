@@ -201,31 +201,21 @@ task main() {
     startTask(wheelControl);
 
     while (isCalibrating);
-    delay(1000);
-    setMotorTarget(miniArm, -80, 100);
-    delay(500);
-    setMotorTarget(armMotor, -45 * 5, 100);
-    delay(5000);
-    setMotorTarget(armMotor, -10 * 5, 50);
-    delay(1500);
-    setMotorTarget(miniArm, 10, 100);
-    delay(500);
-    setMotorTarget(armMotor, 0, 50);
-    delay(1000);
-    setMotorTarget(miniArm, -60, 100);
-    delay(250);
-    setMotorTarget(armMotor, -100 * 5, 100);
-    while(getMotorEncoder(armMotor)>=-60*5);
-    setMotorTarget(rotator, -45, 100);
-    delay(2000);
-    //setMotorTarget(rotator, -90, 100);
-    delay(1000);
-    setMotorTarget(rotator, -35, 100);
-    delay(500);
-    setMotorTarget(armMotor, -40 * 5, 35);
-    delay(2000);
-    setMotorTarget(rotator, 0, 100);
-    delay(500);
-    setMotorTarget(armMotor, 0, 35);
-    delay(2000);
+
+    while(true){
+    	if (getJoystickValue(BtnLUp)) setMotorTarget(miniArm, -80, 100);
+			else if (getJoystickValue(BtnLDown)) setMotorTarget(miniArm, 5, 100);
+
+    	if (getJoystickValue(BtnRUp)) setMotorSpeed(armMotor, -100);
+			else if (getJoystickValue(BtnRDown)) setMotorSpeed(armMotor, 50);
+			else{
+				setMotorTarget(armMotor,getMotorEncoder(armMotor),100);
+			}
+
+    	if (getJoystickValue(BtnEUp)) setMotorSpeed(rotator, -20);
+			else if (getJoystickValue(BtnEDown)) setMotorSpeed(rotator, 20);
+			else{
+				setMotorTarget(rotator,getMotorEncoder(rotator),100);
+			}
+  	}
 }
