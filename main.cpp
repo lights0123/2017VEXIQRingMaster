@@ -1,4 +1,3 @@
-#pragma config(Motor, motor1, lifter, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor2, strafeMotor, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor6, driveMotor, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor9, armMotor, tmotorVexIQ, PIDControl, encoder)
@@ -20,7 +19,6 @@
 //Used to allow me to use my preferred IDE (CLion) to program RobotC without syntax errors
 
 #ifndef ROBOTC                    //Also for compatibilty with other IDEs.
-#define lifter port1
 #define strafeMotor port2
 #define driveMotor port6
 #define armMotor port9
@@ -121,8 +119,8 @@ task main() {
     while (isCalibrating);
 
     while(true){
-    	if (getJoystickValue(BtnLUp)) setMotorTarget(miniArm, -80, 100);
-			else if (getJoystickValue(BtnLDown)) setMotorTarget(miniArm, 5, 100);
+    	if (getJoystickValue(BtnLUp)) setMotorTarget(miniArm, -150, 100);
+			else if (getJoystickValue(BtnLDown)) setMotorTarget(miniArm, 20, 100);
 
     	if (getJoystickValue(BtnRUp)) setMotorSpeed(armMotor, -100);
 			else if (getJoystickValue(BtnRDown)) setMotorSpeed(armMotor, 50);
