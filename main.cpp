@@ -1,5 +1,5 @@
+#pragma config(Motor,  motor1,          driveMotor,    tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor,  motor2,          strafeMotor,   tmotorVexIQ, PIDControl, encoder)
-#pragma config(Motor,  motor6,          driveMotor,    tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor,  motor8,          armMotorBackup, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor,  motor10,         rotator,       tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor,  motor11,         miniArm,       tmotorVexIQ, PIDControl, encoder)
@@ -20,8 +20,8 @@
 //Used to allow me to use my preferred IDE (CLion) to program RobotC without syntax errors
 
 #ifndef ROBOTC                    //Also for compatibilty with other IDEs.
+#define driveMotor port1
 #define strafeMotor port2
-#define driveMotor port6
 #define armMotorBackup port8
 #define rotator port10
 #define miniArm port11
