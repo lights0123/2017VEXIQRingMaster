@@ -1,5 +1,5 @@
-#pragma config(Motor,  motor1,          driveMotor,    tmotorVexIQ, PIDControl, encoder)
-#pragma config(Motor,  motor2,          strafeMotor,   tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor,  motor1,          driveMotor,    tmotorVexIQ, PIDControl, reversed, encoder)
+#pragma config(Motor,  motor2,          strafeMotor,   tmotorVexIQ, PIDControl, reversed, encoder)
 #pragma config(Motor,  motor8,          armMotorBackup, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor,  motor10,         rotator,       tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor,  motor11,         miniArm,       tmotorVexIQ, PIDControl, encoder)
@@ -21,7 +21,7 @@
 
 #ifndef ROBOTC                    //Also for compatibilty with other IDEs.
 #define driveMotor port1
-#	`define strafeMotor port2
+#define strafeMotor port2
 #define armMotorBackup port8
 #define rotator port10
 #define miniArm port11
