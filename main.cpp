@@ -121,7 +121,7 @@ task main() {
     while (isCalibrating);
 
     while(true){
-    	if (getJoystickValue(BtnLUp)) setMotorTarget(miniArm, -150, 100);
+    	if (getJoystickValue(BtnLUp)) setMotorTarget(miniArm, -100, 100);
 			else if (getJoystickValue(BtnLDown)) setMotorTarget(miniArm, 20, 100);
 
     	if (getJoystickValue(BtnRUp)){
