@@ -8,7 +8,7 @@
 
 /*
    Copyright 2018 Ben Schattinger
-   
+
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -129,7 +129,6 @@ task wheelControl() {
 
 bool ringDetected = false;
 int ringCount = 0;
-
 task main() {
     startTask(calibrate);
     startTask(wheelControl);
@@ -140,17 +139,20 @@ task main() {
     	if (getJoystickValue(BtnLUp)) setMotorTarget(miniArm, -100, 100);
 			else if (getJoystickValue(BtnLDown)) setMotorTarget(miniArm, 20, 100);
 
+			static float armMotorEncoder = 0;
     	if (getJoystickValue(BtnRUp)){
     		setMotorSpeed(armMotor, -100);
     		setMotorSpeed(armMotorBackup, -100);
+    		armMotorEncoder = getMotorEncoder(armMotor);
     	}
 			else if (getJoystickValue(BtnRDown)){
 				setMotorSpeed(armMotor, 50);
 				setMotorSpeed(armMotorBackup, 50);
+    		armMotorEncoder = getMotorEncoder(armMotor);
 			}
 			else{
-				setMotorTarget(armMotor,getMotorEncoder(armMotor),100);
-				setMotorTarget(armMotorBackup,getMotorEncoder(armMotorBackup),100);
+				setMotorTarget(armMotor,armMotorEncoder,100);
+				setMotorTarget(armMotorBackup,armMotorEncoder,100);
 			}
 
     	if (getJoystickValue(BtnEUp)) setMotorSpeed(rotator, -20);
