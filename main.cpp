@@ -52,7 +52,7 @@
 typedef enum {
     DIRECTION_UP,
     DIRECTION_DOWN
-} direction;
+} direction; //TODO: refactor to calibrationDirection
 volatile bool isCalibrating = false;
 
 void individualCalibrate(tMotor motor, direction dir, int endGoal) {
@@ -127,8 +127,6 @@ task wheelControl() {
     }
 }
 
-bool ringDetected = false;
-int ringCount = 0;
 task main() {
     startTask(calibrate);
     startTask(wheelControl);
@@ -146,8 +144,8 @@ task main() {
     		armMotorEncoder = getMotorEncoder(armMotor);
     	}
 			else if (getJoystickValue(BtnRDown)){
-				setMotorSpeed(armMotor, 50);
-				setMotorSpeed(armMotorBackup, 50);
+				setMotorSpeed(armMotor, 20);
+				setMotorSpeed(armMotorBackup, 20);
     		armMotorEncoder = getMotorEncoder(armMotor);
 			}
 			else{
