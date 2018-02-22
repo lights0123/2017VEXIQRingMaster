@@ -4,9 +4,21 @@
 - [ ] Project Robot
 - [ ] New Logos
 - [ ] ROS book
+- [ ] Laptop
 
 ## Katy
 - [ ] Rubber Cement
 - [ ] Tri-fold
 - [ ] Design Notebook
-- [ ] Sources Books
+- [ ] STEM Project Research Sources Books
+
+## Checklist for all parts
+- [ ] Project Robot
+- [ ] Robot
+- [ ] Trifold
+- [ ] STEM Project Research Sources Books
+- [ ] Design Notebook
+- [ ] ROS Book
+- [ ] Laptop
+- [ ] Rubber Cement
+- [ ] Wearing Robotics Shirts
