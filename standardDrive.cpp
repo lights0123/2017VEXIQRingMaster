@@ -68,9 +68,9 @@ volatile bool isCalibrating = false;
  * ("endstops"). Once no movement is detected, the motors return to their correct positions to
  * run. If that process takes longer than 2 seconds, the calibration starts over again.
  *
- * @param motor the motor to calibrate
- * @param dir the direction of the endstop
- * @param endGoal the position that the motor should move to once calibration is finished
+ * @param[in] motor the motor to calibrate
+ * @param[in] dir the direction of the endstop
+ * @param[in] endGoal the position that the motor should move to once calibration is finished
  */
 void individualCalibrate(tMotor motor, calibrationDirection dir, int endGoal) {
 	int encoder;
@@ -190,6 +190,8 @@ void angleToThrust(int r, int theta, TMotorControl &t) {
 		t.right = -v_b;
 	}
 }
+
+
 /* Vex Joystick Channels:
  *
  * ChA: Left Joystick, Y-axis
