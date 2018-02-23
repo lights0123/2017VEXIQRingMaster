@@ -108,7 +108,7 @@ extern void datalogAddValue(int datalog, T data);
 extern void setMotorSpeed(tMotor port, int speed);
 extern int getMotorEncoder(tMotor port);
 extern void resetMotorEncoder(tMotor port);
-extern void setMotorTarget(tMotor port, int target, int speed);
+extern void setMotorTarget(tMotor port, float target, int speed);
 extern int getMotorSpeed(tMotor port);
 
 //Sensors
