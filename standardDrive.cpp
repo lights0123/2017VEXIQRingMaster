@@ -1,7 +1,7 @@
-#pragma config(Motor, motor1, armMotorBackup, tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor, motor1, armMotorBackup, tmotorVexIQ, PIDControl, reversed, encoder)
 #pragma config(Motor, motor2, miniArm, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor3, rotator, tmotorVexIQ, PIDControl, encoder)
-#pragma config(Motor, motor4, armMotor, tmotorVexIQ, PIDControl, reversed, encoder)
+#pragma config(Motor, motor4, armMotor, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor7, rightMotor, tmotorVexIQ, PIDControl, encoder)
 #pragma config(Motor, motor12, leftMotor, tmotorVexIQ, PIDControl, reversed, encoder)
 
