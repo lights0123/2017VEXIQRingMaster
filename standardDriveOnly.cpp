@@ -36,12 +36,8 @@
 
 //Also for compatibilty with other IDEs.
 #ifndef ROBOTC
-#define leftMotor port1
-#define rightMotor port2
-#define armMotorBackup port8
-#define rotator port10
-#define miniArm port11
-#define armMotor port12
+#define leftMotor port12
+#define rightMotor port7
 #endif
 
 
